@@ -38,7 +38,7 @@
 
 * Clone o repositório
 
-`git clone https://github.com/crhisfoz/desafio-sharenergy-2023-01.git`
+`https://github.com/crhisfoz/Share-Energy.git`
 
  navegue até o respositório clonado, entre na posta back-end
 
