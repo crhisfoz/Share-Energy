@@ -1,7 +1,7 @@
 import { DOGS_URL } from "../constants/urls";
 import axios from "axios"
 
-export const useGerRandomDogs = async () => {
+export const useGetRandomDogs = async () => {
 
     try {
         const {data} = await axios.get(`${DOGS_URL}`)

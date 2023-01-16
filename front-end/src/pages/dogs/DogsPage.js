@@ -3,7 +3,7 @@
 import React, { useState, useContext } from "react"
 import { Header } from "../../components/header/Header"
 import { StyledDogs, StyledContainerCard } from "./styles"
-import { useGerRandomDogs } from "../../hooks/useGerRandomDogs";
+import { useGetRandomDogs } from "../../hooks/useGetRandomDogs";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Spinner } from "../../components/spinner/Spinner";
 import { useEffect } from 'react';
@@ -23,7 +23,7 @@ export const DogsPage = () => {
             setLoading(true)
             setStateButton(false)
             try {
-                const url = await useGerRandomDogs();
+                const url = await useGetRandomDogs();
 
                 if (url.endsWith('.jpg') || url.endsWith('.JPG') || url.endsWith('.png')){
                 setSrcImage(url)
