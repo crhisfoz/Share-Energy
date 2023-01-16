@@ -3,11 +3,7 @@ import {
   InvalidId,
   InvalidParametersId,
   InvalidPassword,
-<<<<<<< HEAD
-  NotAllowedToCreate,
-=======
   NotAllowedToCreateCPF,
->>>>>>> c0dcd3b5996f2c3e84068125b0b6183737104563
   NotFoundUser,
   NotFoundUsername,
   NotFoundUsers,
