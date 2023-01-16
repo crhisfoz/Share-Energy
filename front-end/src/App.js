@@ -10,16 +10,6 @@ import { GlobalContext } from "./context/GlobalContext"
 
 const App = () => {
 
-<<<<<<< HEAD
-
-  const navigate = useNavigate();
-
-  const {token, isValid} = useContext(GlobalContext);
-  
-  useEffect(()=>{
-    setTimeout(()=>{
-      (token === null && !isValid) ? goToLogin(navigate): goToHome(navigate)
-=======
 
   const navigate = useNavigate();
 
@@ -29,7 +19,6 @@ const App = () => {
   useEffect(()=>{
     setTimeout(()=>{
       (token.length === 0 && !isValid) ? goToLogin(navigate): goToHome(navigate)
->>>>>>> c0dcd3b5996f2c3e84068125b0b6183737104563
     },3000)
   },[])
 

@@ -11,19 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { switchErrorLogin } from "../../utils/switchErrorLogin";
 import { useContext } from "react";
 import { GlobalContext } from "./../../context/GlobalContext";
-<<<<<<< HEAD
-
-
-export const Login = () => {
-
-    const {setToken} = useContext(GlobalContext)
-=======
 import { useState } from 'react';
 import { HeaderLogin } from "../../components/header-login/HeaderLogin";
 import { useSessionStorage } from './../../hooks/useSessionStorage';
 
 export const Login = () => {
->>>>>>> c0dcd3b5996f2c3e84068125b0b6183737104563
     const navigate = useNavigate()
 
     const {token, setToken, isValid, setIsValid,sessionToken, setSessionToken} = useContext(GlobalContext);
@@ -48,13 +40,7 @@ export const Login = () => {
             password: form.password,
         };
         try {
-<<<<<<< HEAD
-            const response = await axios.post(`${BASE_URL}/users/login`, body, headers)
-
-            setToken(response.data.newToken)
-=======
             const response = await axios.post(`${BASE_URL}/login`, body, headers)
->>>>>>> c0dcd3b5996f2c3e84068125b0b6183737104563
 
             if (checked) {
                 setToken([response.data.newToken]);      
@@ -73,11 +59,6 @@ export const Login = () => {
             setIsValid(true)     
         } catch (error) {
             switchErrorLogin(error)
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> c0dcd3b5996f2c3e84068125b0b6183737104563
         }
     }
 

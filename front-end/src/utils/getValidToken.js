@@ -3,15 +3,6 @@ import { useGetToken } from './../hooks/useGetToken';
 
 export const getValidToken = async (token, setIsValid) => {
 
-<<<<<<< HEAD
-
-    const headers = {
-        headers: {
-            Authorization: token,
-        },
-    };
-
-=======
     if (token.length !== 0) {
         const headers = {
             headers: {
@@ -19,7 +10,6 @@ export const getValidToken = async (token, setIsValid) => {
             },
         };
 
->>>>>>> c0dcd3b5996f2c3e84068125b0b6183737104563
         try {
             const response = await useGetToken(headers)
 
@@ -36,9 +26,3 @@ export const getValidToken = async (token, setIsValid) => {
 
 
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> c0dcd3b5996f2c3e84068125b0b6183737104563
