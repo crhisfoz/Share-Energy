@@ -8,31 +8,28 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 
-
 export const DeleteUserModal = ({ user, setDelete }) => {
-  
-  const {token, sessionToken } = useContext(GlobalContext);
+
+  const { token, sessionToken } = useContext(GlobalContext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
 
-  let tokenFunction ;
-  (token.length > 0 ? tokenFunction = token[0] : tokenFunction = sessionToken[0] )
+  let tokenFunction;
+  (token.length > 0 ? tokenFunction = token[0] : tokenFunction = sessionToken[0])
 
-  const handleShow = () =>{
-      setShow(true);
+  const handleShow = () => {
+    setShow(true);
 
   }
 
-  const onDeleteUser = async (ev)=>{
+  const onDeleteUser = async (ev) => {
 
-    console.log(user)
-    console.log(tokenFunction)
 
     ev.preventDefault();
 
     const headers = {
-      headers:{
+      headers: {
         Authorization: tokenFunction
       }
     }
@@ -40,7 +37,7 @@ export const DeleteUserModal = ({ user, setDelete }) => {
     try {
 
       const response = await axios.delete(`${BASE_URL}/${user.id}`, headers);
-      if(response){
+      if (response) {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -61,54 +58,54 @@ export const DeleteUserModal = ({ user, setDelete }) => {
         text: "Requisição não completada, verifique o id enviado, Confira e tenta novamente",
         showConfirmButton: false,
         timer: 1500
-    })
+      })
 
     }
   }
 
   return (
     <>
-    <td type="submit" className="btn btn-danger" id="edit-button" onClick={()=>handleShow()}
-    style={{backgroundColor: "red"}}
-    >
-            Deletar
-        </td>
+      <td type="submit" className="btn btn-danger" id="edit-button" onClick={() => handleShow()}
+        style={{ backgroundColor: "red" }}
+      >
+        Deletar
+      </td>
 
-        <Modal show={show} onHide={handleClose}   backdrop="static" style={{backgroundColor: "rgba(123, 123, 123, 0.5)"}}>
-    <Modal.Header closeButton>
-      <Modal.Title>Deletar Usuário</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-    <Form.Label>Deseja Realmente Deletar o usuário ?? </Form.Label>
-      <Form id="editusermodal" onSubmit={onDeleteUser}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            value={user.username}
-            name="username"
-            disabled
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={user.email}
-            disabled
-          />
-        </Form.Group>
+      <Modal show={show} onHide={handleClose} backdrop="static" style={{ backgroundColor: "rgba(123, 123, 123, 0.5)" }}>
+        <Modal.Header closeButton>
+          <Modal.Title>Deletar Usuário</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Label>Deseja Realmente Deletar o usuário ?? </Form.Label>
+          <Form id="editusermodal" onSubmit={onDeleteUser}>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                value={user.username}
+                name="username"
+                disabled
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={user.email}
+                disabled
+              />
+            </Form.Group>
 
-      </Form>
-    </Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={handleClose}>
-        CANCELAR
-      </Button>
-      <button type="submit" className="btn btn-danger" form="editusermodal">CONFIRMAR</button>
-    </Modal.Footer>
-  </Modal>        
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            CANCELAR
+          </Button>
+          <button type="submit" className="btn btn-danger" form="editusermodal">CONFIRMAR</button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
