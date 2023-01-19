@@ -5,7 +5,6 @@ export const UserList = (props) => {
 
     const { username, name, email, address, phone, cpf } = props
 
-    console.log(props)
     return (
         <StyledList className="row">
             <table class="table">
