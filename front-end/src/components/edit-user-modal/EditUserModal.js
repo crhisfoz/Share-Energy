@@ -10,112 +10,112 @@ import { BASE_URL } from './../../constants/urls';
 import { GlobalContext } from './../../context/GlobalContext';
 
 
-export const EditUserModal = ({user, setIsEdit}) => {
+export const EditUserModal = ({ user, setIsEdit }) => {
 
-    const {token, sessionToken } = useContext(GlobalContext);
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+  const { token, sessionToken } = useContext(GlobalContext);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
 
-    let tokenFunction ;
-    (token.length > 0 ? tokenFunction = token[0] : tokenFunction = sessionToken[0] )
+  let tokenFunction;
+  (token.length > 0 ? tokenFunction = token[0] : tokenFunction = sessionToken[0])
 
-    const handleShow = () =>{
-        setShow(true);
+  const handleShow = () => {
+    setShow(true);
 
+  }
+
+  const [form, onChange, clear] = useForm({
+    username: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+
+  const onSubmitEditUser = async (ev) => {
+
+    const headers = {
+      headers: {
+        Authorization: tokenFunction
+      }
     }
 
-    const [form, onChange, clear] = useForm({
-        username: "",
-        email: "",
-        phone: "",
-        address: "",
-      });
+    ev.preventDefault();
+    let body = {
+      username: form.username,
+      email: form.email,
+      phone: form.phone,
+      address: form.address,
 
-      const onSubmitEditUser = async (ev) => {
-
-        const headers = {
-          headers:{
-            Authorization: tokenFunction
-          }
-        }
-    
-        ev.preventDefault();
-        let body = {
-          username: form.username,
-          email: form.email,
-          phone: form.phone,
-          address: form.address,
-    
-        };
+    };
 
 
-        if(!body.username  && !body.email && !body.phone && !body.address){
-          Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "Oops...",
-            text: "Você não digitou nenhum campo, verifique e tente novamente Para Efetuar sua Requisição",
-            showConfirmButton: false,
-            timer: 3500
+    if (!body.username && !body.email && !body.phone && !body.address) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Oops...",
+        text: "Você não digitou nenhum campo, verifique e tente novamente Para Efetuar sua Requisição",
+        showConfirmButton: false,
+        timer: 3500
+      })
+
+      return
+
+    }
+    if (!body.username) {
+      body.username = user.username
+    }
+    if (!body.email) {
+      body.email = user.email
+    }
+    if (!body.phone) {
+      body.phone = user.phone
+    }
+
+    if (!body.address) {
+      body.address = user.address
+    }
+
+    try {
+
+      const response = await axios.patch(`${BASE_URL}/${user.id}`, body, headers);
+      if (response) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Usuário Editado Com Sucesso",
+          showConfirmButton: false,
+          timer: 1500
         })
+        clear("")
+        setShow(false)
+        setIsEdit(true)
+      }
 
-        return
+    } catch (error) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Oops...",
+        text: "Dados incorretos, Confira e tenta novamente Para Efetuar sua Requisição",
+        showConfirmButton: false,
+        timer: 1500
+      })
 
-        }
-        if(!body.username){
-          body.username = user.username
-        }
-        if(!body.email){
-          body.email = user.email
-        }
-        if(!body.phone){
-          body.phone = user.phone
-        }
+    }
+  }
 
-        if(!body.address){
-          body.address = user.address
-        }
-
-        try {
-
-            const response = await axios.patch(`${BASE_URL}/${user.id}`, body, headers);
-            if(response){
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Usuário Editado Com Sucesso",
-                showConfirmButton: false,
-                timer: 1500
-              })
-              clear("")
-              setShow(false)
-              setIsEdit(true)
-            }
-      
-          } catch (error) {
-            Swal.fire({
-              position: "top-end",
-              icon: "error",
-              title: "Oops...",
-              text: "Dados incorretos, Confira e tenta novamente Para Efetuar sua Requisição",
-              showConfirmButton: false,
-              timer: 1500
-          })
-      
-          }
-        }
-
-    return (
-        <>
-        <td type="submit" className="btn btn-success" id="edit-button" onClick={()=>handleShow()}>
-                Editar
-            </td>
-            <Modal show={show} onHide={handleClose}   backdrop="static" style={{backgroundColor: "rgba(123, 123, 123, 0.5)"}} >
+  return (
+    <>
+      <td type="submit" className="btn btn-success" id="edit-button" onClick={() => handleShow()}>
+        Editar
+      </td>
+      <Modal show={show} onHide={handleClose} backdrop="static" style={{ backgroundColor: "rgba(123, 123, 123, 0.5)" }} >
         <Modal.Header closeButton>
           <Modal.Title>Editar Usuário</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form.Label>Você pode editar apenas os campos não preenchidos</Form.Label>
+          <Form.Label>Você pode editar apenas os campos não preenchidos</Form.Label>
           <Form id="editusermodal" onSubmit={onSubmitEditUser}>
             <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label>Username</Form.Label>
@@ -146,7 +146,7 @@ export const EditUserModal = ({user, setIsEdit}) => {
                 name="email"
                 value={form.email}
                 onChange={onChange}
-                autoFocus 
+                autoFocus
               />
             </Form.Group>
 
@@ -169,7 +169,7 @@ export const EditUserModal = ({user, setIsEdit}) => {
                 placeholder={user.phone}
                 name="phone"
                 value={form.phone}
-                onChange={onChange}                
+                onChange={onChange}
                 autoFocus
               />
             </Form.Group>
@@ -184,7 +184,7 @@ export const EditUserModal = ({user, setIsEdit}) => {
                 readOnly
               />
             </Form.Group>
-            
+
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -193,7 +193,7 @@ export const EditUserModal = ({user, setIsEdit}) => {
           </Button>
           <button type="submit" className="btn btn-success" form="editusermodal">ENVIAR</button>
         </Modal.Footer>
-      </Modal>        
-        </>
-    );
+      </Modal>
+    </>
+  );
 }

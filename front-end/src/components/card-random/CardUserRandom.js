@@ -1,10 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { StyleCard } from "./StyledCard";
 
 export const CardUserRandom = (props) => {
-
-    const navigate = useNavigate();
 
     return (
         <StyleCard className="card" style={{ width: "16rem" }}>
