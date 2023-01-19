@@ -16,6 +16,7 @@ import axios from "axios";
 import { BASE_URL } from "./../../constants/urls";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
+import { DeleteUserModal } from "../../components/delete-user-modal/DeleteUserModal";
 
 export const UsersPage = () => {
 
@@ -120,7 +121,11 @@ export const UsersPage = () => {
                                         setIsEdit={setIsEdit}
                                         isEdit={isEdit}
                                     />
-                                    <td type="submit" className="btn btn-danger" id="delete-button" onClick={() => deleteUser(user)}>Deletar</td>
+                                    <DeleteUserModal
+                                     user={user}
+                                     setDelete={setDelete}
+                                     isDelete={isDelete}
+                                    />
                                 </tr>
                             ))
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -9,7 +10,7 @@ import { BASE_URL } from './../../constants/urls';
 import { GlobalContext } from './../../context/GlobalContext';
 
 
-export const EditUserModal = ({user, isEdit, setIsEdit}) => {
+export const EditUserModal = ({user, setIsEdit}) => {
 
     const {token, sessionToken } = useContext(GlobalContext);
     const [show, setShow] = useState(false);
@@ -109,15 +110,14 @@ export const EditUserModal = ({user, isEdit, setIsEdit}) => {
         <td type="submit" className="btn btn-success" id="edit-button" onClick={()=>handleShow()}>
                 Editar
             </td>
-
-            <Modal show={show} onHide={handleClose}   backdrop="static" >
+            <Modal show={show} onHide={handleClose}   backdrop="static" style={{backgroundColor: "rgba(123, 123, 123, 0.5)"}} >
         <Modal.Header closeButton>
           <Modal.Title>Editar Usuário</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <Form.Label>Você pode editar apenas os campos não preenchidos</Form.Label>
           <Form id="editusermodal" onSubmit={onSubmitEditUser}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
@@ -128,7 +128,7 @@ export const EditUserModal = ({user, isEdit, setIsEdit}) => {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label>Nome</Form.Label>
               <Form.Control
                 type="text"
@@ -138,7 +138,7 @@ export const EditUserModal = ({user, isEdit, setIsEdit}) => {
                 readOnly
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -150,7 +150,7 @@ export const EditUserModal = ({user, isEdit, setIsEdit}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label>Endereço</Form.Label>
               <Form.Control
                 type="text"
@@ -162,7 +162,7 @@ export const EditUserModal = ({user, isEdit, setIsEdit}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label>Telefone</Form.Label>
               <Form.Control
                 type="text"
@@ -174,7 +174,7 @@ export const EditUserModal = ({user, isEdit, setIsEdit}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label>CPF</Form.Label>
               <Form.Control
                 type="text"
