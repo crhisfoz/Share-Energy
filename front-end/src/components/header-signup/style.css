@@ -13,19 +13,20 @@
     color: #000;
     text-decoration: none;
     display: inline-block;
+    font-weight: bold;
 
 }
 .main-nav{
     display: flex;
 }
 .nav a:hover{
-    background-color: rgba(5, 128, 37, 0.932);
+    background-color:var(--forest-green);
     color: #fff;
     border-radius: 10px;
 }
 
 .nav a{
-    color:green;
+    color:var(--forest-green);
     border-radius: 10px;
 }
 
