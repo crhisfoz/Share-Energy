@@ -1,31 +1,33 @@
-import dotenv from "dotenv";
 import { MongoClient as Mongo, Db } from "mongodb";
 
-dotenv.config();
-export const BaseDatabase = {
-  client: undefined as unknown as Mongo,
-  db: undefined as unknown as Db,
+export class BaseDatabase {
+  private static client: Mongo;
+  private static db: Db;
 
-  async connect(): Promise<void> {
-    const url = process.env.DB_URL || "localhost: 27017";
-    const username = process.env.DB_USER;
-    const password = process.env.DB_PASSWORD;
+  private static url = process.env.DB_URL || "localhost:27017";
+  private static username = process.env.DB_USER;
+  private static password = process.env.DB_PASSWORD;
 
-    const client = new Mongo(url, { auth: { username, password } });
-
+  public static async connect(): Promise<void> {
+    const client = new Mongo(this.url, {
+      auth: { username: this.username, password: this.password },
+    });
     const db = client.db("users-db");
-
     this.client = client;
     this.db = db;
 
     try {
-      console.log("connected to mongodb!!")
-      
-    } catch (error:any) {
-      console.log("Error in DB connection", error.message)
+      console.log("Connected to MongoDB!");
+    } catch (error) {
+      console.log("Error in DB connection:");
     }
-   
-  },
-};
+  }
 
-BaseDatabase.connect()
+  public static getClient(): Mongo {
+    return this.client;
+  }
+
+  public static getDb(): Db {
+    return this.db;
+  }
+}
