@@ -5,9 +5,15 @@ import { UpdateUser, UserDTO } from "../model/userTypes";
 import { ObjectId } from "mongodb";
 
 export class UserDatabase implements UserRepository {
+
+  constructor(){
+    BaseDatabase.connect()
+  }
+
   public signup = async (user: UserDTO): Promise<void> => {
     try {
-      await BaseDatabase.db.collection("users").insertOne(user);
+      await BaseDatabase.getDb()
+      .collection("users").insertOne(user);
     } catch (error: any) {
       throw new CustomError(500, error);
     }
@@ -16,7 +22,7 @@ export class UserDatabase implements UserRepository {
   public getUserByUsername = async (username: string): Promise<UserDTO> => {
     try {
       let newUser: any = {};
-      const user = await BaseDatabase.db
+      const user =  await BaseDatabase.getDb()
         .collection("users")
         .findOne({ username });
 
@@ -39,7 +45,7 @@ export class UserDatabase implements UserRepository {
     try {
       let arrayUsers: any = [];
       let newUser: any = {};
-      const users = await BaseDatabase.db
+      const users = await BaseDatabase.getDb()
         .collection<Omit<UserDTO, "id">>("users")
         .find({})
         .toArray();
@@ -67,7 +73,7 @@ export class UserDatabase implements UserRepository {
   public getUserById = async (id: string): Promise<UserDTO> => {
     try {
       let newUser: any = {};
-      const user = await BaseDatabase.db
+      const user = await BaseDatabase.getDb()
         .collection<Omit<UserDTO, "password">>("users")
         .findOne({ _id: new ObjectId(id) });
 
@@ -90,7 +96,8 @@ export class UserDatabase implements UserRepository {
     dataUser: UpdateUser
   ): Promise<void> => {
     try {
-      await BaseDatabase.db.collection("users").updateOne(
+      await BaseDatabase.getDb()
+      .collection("users").updateOne(
         { _id: new ObjectId(id) },
         {
           $set: {
@@ -105,7 +112,7 @@ export class UserDatabase implements UserRepository {
 
   public deleteUser = async (id: string): Promise<void> => {
     try {
-      await BaseDatabase.db
+      await BaseDatabase.getDb()
         .collection("users")
         .deleteOne({ _id: new ObjectId(id) });
     } catch (error: any) {
