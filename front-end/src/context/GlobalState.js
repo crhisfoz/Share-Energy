@@ -14,7 +14,7 @@ export const GlobalState = ({ children }) => {
   const [users, setUsers] = useSessionStorage("users",[])
   const [token, setToken] = useLocalStorage("token", null)
   const [sessionToken, setSessionToken] = useSessionStorage("token", null)
-  const [isValid, setIsValid] = useState();
+  const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     getUsersData()

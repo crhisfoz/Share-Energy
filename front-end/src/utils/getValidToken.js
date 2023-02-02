@@ -20,7 +20,7 @@ export const getValidToken = async (token, setIsValid) => {
         }
 
     }
-    setIsValid(false)
+
 }
 
 
