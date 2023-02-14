@@ -54,8 +54,7 @@ Melhorias a implantar:
 
 - Um pequeno bug na página de Dogs Random, onde ao carregar a página ele renderiza uma imagem de cachorro e logo troca para outra,
 - Uma melhor componentização e separação de arquivos e funções,
-- Melhorar os tratamento de Erros,
-- Colocar um botão de confirmar ou cancelar para deletar usuário, pois o clique já executa isso diretamente,
+- Melhorar os tratamentos de Erros,
 - Testes tanto no BACK-END quanto no FRONT-END
 
 ## Prints Telas 
