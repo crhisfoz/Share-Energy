@@ -62,7 +62,7 @@ Senha: `sh@r3n3rgy`
 
 - Bug na página dogs, onde no carregamento da página mostrar uma imagem de cão e logo após ele troca essa imagem
 
-- Também implantar na página de usuários um modal de confirmação com botões de confirmar ou cancelar se o usuário realmente deseja deletar
+- Também implantar na página de usuários um modal de confirmação com botões de confirmar ou cancelar se o usuário realmente deseja deletar 
 
 <h4 align="right"><a href="#topo">Topo</a></h4>
 
