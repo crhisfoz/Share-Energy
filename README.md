@@ -14,7 +14,7 @@ Este projeto foi desenvolvido para o desafio técnico do cargo de Desenvolvedor 
 **Back-end:** NodeJS, TyPeScript
 
 ## Link do Surge:
-<p>Confira o <a href="http://placid-toe.surge.sh/" target="blank"> Desafio SharEnergy</a>.</p>
+<p>Confira o <a href="http://efficacious-coat.surge.sh/" target="blank"> Desafio SharEnergy</a>.</p>
 
 ## * Credenciais *
 
